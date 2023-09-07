@@ -1,5 +1,3 @@
-//-------------------------------------------------- Server scripts
-
 // _null = [] execVM "mission\InvasionMissionControl.sqf";
 // _null = [] execVM "mission\RescueMissionControl.sqf";
 // _null = [] execVM "mission\UnderwaterMissionControl.sqf";
