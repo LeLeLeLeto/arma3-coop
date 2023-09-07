@@ -1,8 +1,10 @@
-private ["_mission","_missionList","_currentMission","_delay"];
+/**
+	
+ */
 
-_delay = 60 + (random 60);
+delai = 60 + (random 60);
 
-_missionList = [
+liste = [
 	"SPET_AA",
 	"SPET_Artillerie",
 	"SPET_Coms"
@@ -10,19 +12,16 @@ _missionList = [
 	//"FIA_Armement"
 	//"CSAT_NeutraliserOfficier"
 ];
-	
-while { true } do {
-	// Choix de la mission
-	_mission = selectRandom _missionList;
 
-	// Choix du fichier correspondant
-	_currentMission = execVM format ["scripts\missions\attaque_destruction\%1.sqf", _mission];
+while { true } do {
+	// Lancement mission aléatoire dans la liste
+	mission = execVM format ["scripts\missions\attaque_destruction\%1.sqf", selectRandom liste];
 
 	waitUntil {
 		// On attend que la mission se finisse
-		scriptDone _currentMission
+		scriptDone mission
 	};
-
+ 
 	// On attend un délai et tout recommence
-	sleep _delay;
+	sleep delai;
 };
