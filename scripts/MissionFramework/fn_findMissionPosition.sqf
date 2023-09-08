@@ -4,8 +4,8 @@
  */
 
 [
-	[10000, 20000], // Centre de la recherche
-	0, // Distance minimale
+	[14000, 16000], // Centre de la recherche
+	5000, // Distance minimale
 	-1, // Distance maximale
 	0, // Distance minimale avec d'autres objets
 	0, // 0 : terre uniquement
