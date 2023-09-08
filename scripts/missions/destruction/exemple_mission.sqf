@@ -29,7 +29,8 @@ objectif engineOn true;
 	"Mission exemple", // Description
 	"Destroy_And_EliminateMarker", // Type
 	"mission_exemple", // ID
-	_position
+	_position,
+	"ColorRed"
 ] call MFW_fn_createMissionMarker;
 
 // ----- Unités de défense
@@ -68,9 +69,9 @@ liste_unites = [
 	"O_R_Patrol_Soldier_Medic",
 	"O_R_Patrol_Soldier_Engineer_F"];
 
-[liste_groupes, nombre_groupes, _position] call MFW_fn_spawnGroups;
-[liste_vehicules, nombre_vehicules, _position] call MFW_fn_spawnVehicles;
-[liste_unites, _position, east] call MFW_fn_spawnUnitsInBuildings;
+groupes pushBack [liste_groupes, nombre_groupes, _position] call MFW_fn_spawnGroups;
+vehicules pushBack [liste_vehicules, nombre_vehicules, _position] call MFW_fn_spawnVehicles;
+groupes pushBack [liste_unites, _position, east] call MFW_fn_spawnUnitsInBuildings;
 
 // Attente fin d'objectif
 while {alive objectif} do { sleep 10; };
@@ -79,8 +80,7 @@ while {alive objectif} do { sleep 10; };
 ["mission_exemple", "SUCCEEDED"] spawn BIS_fnc_taskSetState;
 
 // Nettoyage
-// Après 5 minutes
-sleep 3000;
+sleep 10;
 
 ["mission_exemple"] call BIS_fnc_deleteTask;
 

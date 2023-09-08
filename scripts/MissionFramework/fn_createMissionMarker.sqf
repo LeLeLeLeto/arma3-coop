@@ -3,7 +3,7 @@
 	Crée un marqueur sur la carte
  */
 
-params ["_titre", "_description", "_type", "_id", "_position"];
+params ["_titre", "_description", "_type", "_id", "_position", "_color"];
 [
 	true,
 	_id,
@@ -15,6 +15,7 @@ params ["_titre", "_description", "_type", "_id", "_position"];
 ] call BIS_fnc_taskCreate;
 
 marqueur = createMarker [_id, _position];
-marqueur setMarkerType "selector_selectedMission";
-marqueur setMarkerSize [2, 2];
-marqueur setMarkerColor "ColorBlue";
+marqueur setMarkerShape "ELLIPSE";
+marqueur setMarkerBrush "FDiagonal";
+marqueur setMarkerSize [1000, 1000];
+marqueur setMarkerColor _color;
