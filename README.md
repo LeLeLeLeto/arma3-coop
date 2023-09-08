@@ -4,7 +4,7 @@
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/LeLeLeLeto/arma3-coop/main?label=Derni%C3%A8re%20modification)
 ![GitHub commits difference between two branches/tags/commits](https://img.shields.io/github/commits-difference/LeLeLeLeto/arma3-coop?base=main&head=dev&label=Mises%20%C3%A0%20jour%20en%20attente)
 
-ArmA3 - Coop est un framework de serveur Arma3 fait pour simplifier la vie des administrateurs.
+ArmA3 - Coop est un framework de serveur Arma3 fait pour simplifier ma vie.
 
 ## Fonctionnalités
 - Présence civile sur toute la carte,
