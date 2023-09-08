@@ -20,10 +20,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={14768.005,55.253399,16650.904};
-		dir[]={0.18171616,-0.52838105,0.82936883};
-		up[]={0.11309314,0.84898996,0.51616716};
-		aside[]={0.97686028,5.0384551e-007,-0.21403125};
+		pos[]={14715.396,56.965816,16682.398};
+		dir[]={-0.011949423,-0.59715378,0.80203789};
+		up[]={-0.0088959038,0.80212671,0.59708756};
+		aside[]={0.99988914,4.6566129e-010,0.014897173};
 	};
 };
 binarizationWanted=0;
@@ -24672,12 +24672,14 @@ class Mission
 			dataType="Layer";
 			name="Medium - Op Tower";
 			id=1166;
+			atlOffset=185.97;
 		};
 		class Item529
 		{
 			dataType="Layer";
 			name="Artillery Position";
 			id=1202;
+			atlOffset=185.97;
 		};
 		class Item530
 		{
@@ -25651,6 +25653,7 @@ class Mission
 			dataType="Layer";
 			name="test_mission_spetsnaz_destruction_heli_1";
 			id=1339;
+			atlOffset=185.97;
 		};
 	};
 	class Connections

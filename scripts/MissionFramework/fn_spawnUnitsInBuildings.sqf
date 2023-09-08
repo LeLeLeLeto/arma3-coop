@@ -5,9 +5,9 @@
  */
 
 params ["_unites", "_position", "_faction"];
-groupes = [];
+resultat = [];
 
-batiments = nearestObjects [_position, ["house", "building"], 400];
+batiments = nearestObjects [_position, ["house", "building"], 600];
 if (count batiments > 0) then {
 	// 6 ln x
 	for "i" from 0 to count batiments do {
@@ -15,8 +15,8 @@ if (count batiments > 0) then {
 		batiment = selectRandom batiments;
 		batiments = batiments - [batiment];
 
-		// 1 chance sur 4
-		if random 4 < 1 do {
+		// 20% de chance
+		if (20 > (random 100)) then {
 			// 1 groupe par batiment
 			groupe = createGroup east;
 
@@ -34,9 +34,9 @@ if (count batiments > 0) then {
 
 				unite disableAI "PATH";
 			};
-			groupes pushBack groupe;
+			resultat pushBack groupe;
 		}
 	};
 };
 
-groupes
+resultat

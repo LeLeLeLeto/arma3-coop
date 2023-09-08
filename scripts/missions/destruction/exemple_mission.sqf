@@ -4,7 +4,6 @@
  */
 
 // Stockage des unités apparues
-vehicules = [];
 groupes = [];
 
 // Position de la mission
@@ -69,9 +68,9 @@ liste_unites = [
 	"O_R_Patrol_Soldier_Medic",
 	"O_R_Patrol_Soldier_Engineer_F"];
 
-groupes pushBack [liste_groupes, nombre_groupes, _position] call MFW_fn_spawnGroups;
-vehicules pushBack [liste_vehicules, nombre_vehicules, _position] call MFW_fn_spawnVehicles;
-groupes pushBack [liste_unites, _position, east] call MFW_fn_spawnUnitsInBuildings;
+groupes append ([liste_groupes, nombre_groupes, _position] call MFW_fn_spawnGroups);
+groupes append ([liste_vehicules, nombre_vehicules, _position] call MFW_fn_spawnVehicles);
+groupes append ([liste_unites, _position, east] call MFW_fn_spawnUnitsInBuildings);
 
 // Attente fin d'objectif
 while {alive objectif} do { sleep 10; };
@@ -82,10 +81,13 @@ while {alive objectif} do { sleep 10; };
 // Nettoyage
 sleep 10;
 
+{
+	_y = _x; // _y : Groupe
+	{
+		deleteVehicle _x;
+	} forEach units _y;
+} forEach groupes;
+
 ["mission_exemple"] call BIS_fnc_deleteTask;
-
-deleteVehicle _x foreach vehicules;
-deleteVehicle _x foreach groupes;
-
 deleteMarker "mission_exemple";
 diag_log "Mission terminée";

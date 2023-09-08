@@ -5,7 +5,7 @@
  */
 
  params ["_liste_vehicules", "_nombre", "_position"];
- vehicules = [];
+ resultat = [];
 
  for "i" from 0 to _nombre do {
 	groupe = createGroup east;
@@ -17,7 +17,7 @@
 	] call BIS_fnc_spawnVehicle;
 	[groupe, _position, random(400)] call BIS_fnc_taskPatrol;
 
-	vehicules pushBack vehicule;
+	resultat pushBack groupe;
  };
 
- vehicules
+ resultat
