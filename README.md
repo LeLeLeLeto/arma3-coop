@@ -10,11 +10,12 @@ ArmA3 - Coop est un framework de serveur Arma3 fait pour simplifier la vie des a
 - Présence civile sur toute la carte,
 - 2 types de missions permanentes :
   - Attaque : Nettoyez des camps remplis d'ennemis, libérez des villes dans un contexte immersif et stimulant,
-  - Destruction : Faites tomber des tours de communications & des véhicules importants,
-  - (2 autres types sont en développement !)
+  - Destruction : Faites tomber des batiments & des véhicules importants,
+  - (2 autres types en développement)
 - Véhicules et équipements français détaillés,
 - Communications à courte & longue portée avec Task Force Radio,
 - 4 avant-postes à votre disposition selon le contexte des missions,
+- Scripts simplifiés et faciles à recopier
 - Carte optimisée pour votre confort de jeu.
 
 ## Nous rejoindre
@@ -24,3 +25,7 @@ Vous pouvez nous rejoindre sur Teamspeak (82.66.223.30), Discord (N/A), ou direc
 Tout le monde est le bienvenu !
 
 [![Banner for Les Francais [MOD ARMEE FRANCAISE]](https://cdn.battlemetrics.com/b/horizontal500x80px/23664479.png?foreground=%23EEEEEE&background=%23222222&lines=%23333333&linkColor=%231185ec&chartColor=%23FF0700)](https://www.battlemetrics.com/servers/arma3/23664479)
+
+## Partenaires & Remerciements
+
+Merci aux Mercenaires Francais pour avoir partagé une partie de leur code :)
