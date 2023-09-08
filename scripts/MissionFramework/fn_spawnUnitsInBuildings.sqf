@@ -7,21 +7,21 @@
 params ["_unites", "_position", "_faction"];
 resultat = [];
 
-batiments = nearestObjects [_position, ["house", "building"], 600];
+batiments = nearestTerrainObjects [_position, ["BUILDING"], 300];
 if (count batiments > 0) then {
 	// 6 ln x
 	for "i" from 0 to count batiments do {
-		// Evite de choisir 2 fois le même batiment
-		batiment = selectRandom batiments;
-		batiments = batiments - [batiment];
-
 		// 20% de chance
 		if (20 > (random 100)) then {
+			// Evite de choisir 2 fois le même batiment
+			batiment = selectRandom batiments;
+			batiments = batiments - [batiment];
+
 			// 1 groupe par batiment
 			groupe = createGroup east;
 
 			// Ajout des unités
-			positions_batiment = batiment buildingPos -1;
+			positions_batiment = [batiment] call BIS_fnc_buildingPositions;
 			for "n" from 0 to floor(random count positions_batiments) do {
 				position_batiment = selectRandom positions_batiment;
 
@@ -35,7 +35,7 @@ if (count batiments > 0) then {
 				unite disableAI "PATH";
 			};
 			resultat pushBack groupe;
-		}
+		};
 	};
 };
 
