@@ -7,14 +7,20 @@
 vehicules = [];
 groupes = [];
 
+MFW_fn_findMissionPosition = compile preprocessFile "scripts\MissionFramework\fn_findMissionPosition.sqf";
+MFW_fn_spawnGroups = compile preprocessFile "scripts\MissionFramework\fn_spawnGroups.sqf";
+MFW_fn_spawnVehicles = compile preprocessFile "scripts\MissionFramework\fn_spawnVehicles.sqf";
+MFW_fn_spawnUnitsInBuildings = compile preprocessFile "scripts\MissionFramework\fn_spawnUnitsInBuildings.sqf";
+MFW_fn_createMissionMarker = compile preprocessFile "scripts\MissionFramework\fn_createMissionMarker.sqf";
+
 // Position de la mission
-position = call MFW_fn_findMissionPosition;
+_position = call MFW_fn_findMissionPosition;
 
 // Objectif à détruire
 objectif_class = "O_T_APC_Tracked_02_AA_ghex_F";
 
 // Type Véhicule
-objectif = [position, 0, objectif_class, east] call BIS_fnc_spawnVehicle select 0;
+objectif = [_position, 0, objectif_class, east] call BIS_fnc_spawnVehicle select 0;
 objectif engineOn true;
 
 // Type Batiment
@@ -29,7 +35,7 @@ objectif engineOn true;
 	"Mission exemple", // Description
 	"Destroy_And_EliminateMarker", // Type
 	"mission_exemple", // ID
-	position
+	_position
 ] call MFW_fn_createMissionMarker;
 
 // ----- Unités de défense
@@ -68,9 +74,9 @@ liste_unites = [
 	"O_R_Patrol_Soldier_Medic",
 	"O_R_Patrol_Soldier_Engineer_F"];
 
-[liste_groupes, nombre_groupes, position] call MFW_fn_spawnGroups;
-[liste_vehicules, nombre_vehicules, position] call MFW_fn_spawnVehicles;
-[liste_unites, position, east] call MFW_fn_spawnUnitsInBuildings;
+[liste_groupes, nombre_groupes, _position] call MFW_fn_spawnGroups;
+[liste_vehicules, nombre_vehicules, _position] call MFW_fn_spawnVehicles;
+[liste_unites, _position, east] call MFW_fn_spawnUnitsInBuildings;
 
 // Attente fin d'objectif
 while {alive objectif} do { sleep 10; };

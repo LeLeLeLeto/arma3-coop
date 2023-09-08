@@ -5,7 +5,7 @@
 delai = 60 + (random 60);
 
 liste = [
-	"exemple_mission.sqf"
+	"exemple_mission"
 	//"SPET_AA",
 	//"SPET_Artillerie",
 	//"SPET_Coms"
@@ -20,7 +20,7 @@ while { true } do {
 
 	waitUntil {
 		// On attend que la mission se finisse
-		scriptDone mission
+		scriptDone mission;
 	};
  
 	// On attend un délai et tout recommence

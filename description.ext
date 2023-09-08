@@ -35,5 +35,5 @@ showUAVFeed = 1;										// Enables/Disables the UAV Feed. Zeus-related.
 #include "scripts\CHVD\dialog.hpp"
 class CfgFunctions {
     #include "scripts\CHVD\CfgFunctions.hpp"
-	#include "scripts\MissionFramework\CfgFunctions.hpp"
+	// #include "scripts\MissionFramework\CfgFunctions.hpp" // TODO comprendre comment la compilation marche
 };

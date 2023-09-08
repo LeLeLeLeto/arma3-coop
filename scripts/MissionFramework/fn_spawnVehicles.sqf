@@ -7,16 +7,17 @@
  params ["_liste_vehicules", "_nombre", "_position"];
  vehicules = [];
 
- for "i" from 0 to _nombre {
+ for "i" from 0 to _nombre do {
+	groupe = createGroup east;
 	vehicule = [
 		[_position, 50, 200, -1, 0, 0.2] call BIS_fnc_findSafePos,
 		0,
 		selectRandom _liste_vehicules,
-		east
+		groupe
 	] call BIS_fnc_spawnVehicle;
-	[vehicule, _position, 100 + random(250)] call BIS_fnc_taskPatrol;
+	[groupe, _position, random(400)] call BIS_fnc_taskPatrol;
 
 	vehicules pushBack vehicule;
- }
+ };
 
  vehicules
