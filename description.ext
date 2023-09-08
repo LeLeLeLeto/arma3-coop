@@ -31,9 +31,9 @@ enableItemsDropping = 0; 								// disabled with 0
 joinUnassigned = 1;										// 0 = players forced into role on join
 showUAVFeed = 1;										// Enables/Disables the UAV Feed. Zeus-related.
 
-// Menu Distance
+// Importation des fonctions
 #include "scripts\CHVD\dialog.hpp"
-class CfgFunctions
-{
+class CfgFunctions {
     #include "scripts\CHVD\CfgFunctions.hpp"
+	#include "scripts\MissionFramework\CfgFunctions.hpp"
 };

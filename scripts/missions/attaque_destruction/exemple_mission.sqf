@@ -8,7 +8,7 @@ vehicules = [];
 groupes = [];
 
 // Position de la mission
-position = [[10000, 20000, 130], 0, 20000, 1, 0, 0.2, 0, []] call BIS_fnc_findSafePos;
+position = call MFW_fn_findMissionPosition;
 
 // Objectif à détruire
 objectif_class = "O_T_APC_Tracked_02_AA_ghex_F";
@@ -24,45 +24,23 @@ objectif engineOn true;
 // TODO
 
 // Briefing / Marqueurs
-// A terme utiliser des classes de tâches !
-tache_texte = [
-	"Une mission d'exemple.", // Description
+[
 	"Mission exemple", // Titre
-	"Destroy_And_EliminateMarker" // Type de marqueur
-];
-
-[true, "destruction_exemple", tache_texte, position, "CREATED", 0, true] call BIS_fnc_taskCreate;
-
-marqueur = createMarker ["destruction_exemple", position];
-marqueur setMarkerType "selector_selectedMission";
-marqueur setMarkerSize [2, 2];
-marqueur setMarkerColor "ColorRed";
+	"Mission exemple", // Description
+	"Destroy_And_EliminateMarker", // Type
+	"mission_exemple", // ID
+	position
+] call MFW_fn_createMissionMarker;
 
 // ----- Unités de défense
-// Groupes
 nombre_groupes = 6 + round(random(3));
-
 liste_groupes = [
 	(configfile >> "CfgGroups" >> "East" >> "OPF_R_F" >> "SpecOps" >> "O_R_InfTeam"),
 	(configfile >> "CfgGroups" >> "East" >> "OPF_R_F" >> "SpecOps" >> "O_R_InfSquad"),
 	(configfile >> "CfgGroups" >> "East" >> "OPF_R_F" >> "SpecOps" >> "O_R_reconSquad")
 ];
 
-for "i" from 0 to nombre_groupes do {
-	// Création du groupe
-	groupe = [
-		[position, 50, 200, -1, 0, 0.2] call BIS_fnc_findSafePos,
-		east,
-		selectRandom liste_groupes
-	]  call BIS_fnc_spawnGroup;
-	[groupe, position, 50 + random(250)] call BIS_fnc_taskPatrol;
-
-	groupes pushBack groupe;
-}
-
-// Véhicules
 nombre_vehicules = 1 + floor(random(3));
-
 liste_vehicules = [
 	"O_G_Offroad_01_armed_F",
 	"O_MBT_02_cannon_F",
@@ -77,26 +55,37 @@ liste_vehicules = [
 	"O_Heli_Light_02_v2_F",
 	"O_MBT_04_command_F",
 	"O_MBT_04_cannon_F"
-]
+];
 
-for "i" from 0 to nombre_vehicules do {
-	vehicule = [
-		[position, 50, 200, -1, 0, 0.2] call BIS_fnc_findSafePos,
-		0,
-		selectRandom liste_vehicules,
-		east
-	] call BIS_fnc_spawnVehicle;
-	[vehicule, position, 100 + random(250)] call BIS_fnc_taskPatrol;
+liste_unites = [
+	"O_R_Soldier_TL_F",
+	"O_R_Soldier_AR_F",
+	"O_R_soldier_exp_F",
+	"O_R_Soldier_GL_F",
+	"O_R_Soldier_LAT_F",
+	"O_R_soldier_M_F",
+	"O_R_Patrol_Soldier_M_F",
+	"O_R_Patrol_Soldier_Medic",
+	"O_R_Patrol_Soldier_Engineer_F"];
 
-	vehicules pushBack vehicule;
-}
+[liste_groupes, nombre_groupes, position] call MFW_fn_spawnGroups;
+[liste_vehicules, nombre_vehicules, position] call MFW_fn_spawnVehicles;
+[liste_unites, position, east] call MFW_fn_spawnUnitsInBuildings;
 
-// Unités dans les batiments
-batiments = nearestObjects [position, ["house", "building"], 400];
+// Attente fin d'objectif
+while {alive objectif} do { sleep 10; };
 
-if (count batiments > 0){
-	batiment = selectRandom batiments;
-	batiments = batiments - [batiment];
+// Succès
+["mission_exemple", "SUCCEEDED"] spawn BIS_fnc_taskSetState;
 
-	
-}
+// Nettoyage
+// Après 5 minutes
+sleep 3000;
+
+["mission_exemple"] call BIS_fnc_deleteTask;
+
+deleteVehicle _x foreach vehicules;
+deleteVehicle _x foreach groupes;
+
+deleteMarker "mission_exemple";
+diag_log "Mission terminée";
