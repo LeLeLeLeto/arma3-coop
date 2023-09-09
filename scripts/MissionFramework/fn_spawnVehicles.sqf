@@ -15,7 +15,7 @@
 		selectRandom _liste_vehicules,
 		groupe
 	] call BIS_fnc_spawnVehicle;
-	[groupe, _position, random(400)] call BIS_fnc_taskPatrol;
+	[groupe, _position, 400 + random(100)] call BIS_fnc_taskPatrol;
 
 	resultat pushBack groupe;
  };
