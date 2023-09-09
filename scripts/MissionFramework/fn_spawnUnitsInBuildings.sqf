@@ -4,39 +4,34 @@
 	Retourne : liste des groupes créés
  */
 
-params ["_unites", "_position", "_faction"];
-resultat = [];
+params ["_unites", "_position"];
+_resultat = [];
 
-batiments = nearestTerrainObjects [_position, ["BUILDING"], 300];
-if (count batiments > 0) then {
-	// 6 ln x
-	for "i" from 0 to count batiments do {
-		// 20% de chance
-		if (20 > (random 100)) then {
-			// Evite de choisir 2 fois le même batiment
-			batiment = selectRandom batiments;
-			batiments = batiments - [batiment];
+private _garrisongroupamount = 0;
+	_batiments = nearestObjects [_position, ["house","building"], 500];
 
-			// 1 groupe par batiment
-			groupe = createGroup east;
+	if (count _batiments > 0) then {
+		{
+			_groupe = createGroup east;
+			
+			// TODO : chance d'apparition f(x) = 100 - 100/500 . x
+			// (100% à 0m > 0% à 500m)
+			_distance_batiment = _x distance _position;
+			_chance_apparition = 100 - 100 / 500 * _distance_batiment;
 
-			// Ajout des unités
-			positions_batiment = [batiment] call BIS_fnc_buildingPositions;
-			for "n" from 0 to floor(random count positions_batiments) do {
-				position_batiment = selectRandom positions_batiment;
+			if (_chance_apparition > random(100)) then {
+				_positions = _x buildingPos -1;
+				for "_i" from 1 to count _positions do {
+					_position_unite = selectRandom _positions;
+					_positions = _positions - [_position_unite];
 
-				positions_batiments = positions_batiments - [position_batiment];
-
-				unite = groupe createUnit [
-					selectRandom _unites,
-					position_batiment, [], 0,
-					"CAN_COLLIDE"];
-
-				unite disableAI "PATH";
+					_unite = _groupe createUnit [selectRandom _unites, _position_unite, [], 0, "CAN_COLLIDE"];
+					_unite disableAI "PATH";
+				};
 			};
-			resultat pushBack groupe;
-		};
-	};
-};
 
-resultat
+			_resultat pushBack _groupe;
+		} forEach _batiments;
+	};
+
+_resultat
