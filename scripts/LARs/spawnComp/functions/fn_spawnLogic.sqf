@@ -19,8 +19,14 @@ if ( random 1 <= _presence && { call compile _preCondition } ) then {
 	//_placementRadius = getNumber( _cfg >> "Attributes" >> "placementRadius" );
 
 	//TODO: Split logics into proper module grps
-	private _group = group BIS_functions_mainscope;
+	//FIXED: module initialisation now handles groups for modules on side logic?? ( 1.86 )
+	private _group = createGroup sideLogic;
 	_logic = _group createUnit [ _type, [0,0,0], [], 0, "CAN_COLLIDE" ]; //No randomStart for logics
+
+	//Handle initialisation of modules spawned at runtime( time > 0 ) ( A3 1.86 )
+	if ( _type isKindOf "Module_F" ) then {
+		_logic setVariable [ "BIS_fnc_initModules_disableAutoActivation", false ];
+	};
 
 	_position = [ _logic, _position, _rotation, _ATLOffset ] call LARs_fnc_setPositionandRotation;
 

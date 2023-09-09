@@ -1,39 +1,7 @@
-
-// ----- Informations
-author = "Léo"
-onLoadName = "[LR] Les Rancais"
-onLoadMission = "TeamSpeak : 82.66.223.30"
-loadScreen = ""; // TODO : Ajouter une image de chargement
-overviewPicture = "";
-
-onLoadIntro = "";
-onLoadIntroTime = 1;
-onLoadMissionTime = 1;
-
-class Header 
-	{
-		gameType = COOP;								// Unknown, COOP, DM, TDM, CTF, SC, CTI, RPG, Sandbox, Seize, Defend.
-		minPlayers = 1;									// Min # of players the MISSION supports
-		maxPlayers = 64;								// Max # of players the MISSION supports, not server slots. Make sure # is greater than server slots.
-	}; 
-
-// ----- Admin
-
-enableDebugConsole = 0;									// 0 = disabled. 1 = admins, 2 = everybody. 0 is recommended in MP.
-allowFunctionsLog = 0; 									// Log functions to .rpt. disabled with 0
-
-// ----- Autres
-
-disableChannels[] = {6};								// 0 = Global, 1 = Side, 2 = Command, 3 = Group, 4 = Vehicle, 5 = Direct, 6 = System. Admin/server/BattlEye can still use Global. 
-disabledAI = 1;											// No AI in playable units
-aiKills = 0; 											// disable scorelist for AI players
-enableItemsDropping = 0; 								// disabled with 0
-joinUnassigned = 1;										// 0 = players forced into role on join
-showUAVFeed = 1;										// Enables/Disables the UAV Feed. Zeus-related.
-
-// Importation des fonctions
-#include "scripts\CHVD\dialog.hpp"
 class CfgFunctions {
-    #include "scripts\CHVD\CfgFunctions.hpp"
-	// #include "scripts\MissionFramework\CfgFunctions.hpp" // TODO comprendre comment la compilation marche
+	#include "scripts\LARs\spawnComp\functions\functions.cpp"
+	#include "scripts\CHVD\CfgFunctions.hpp"
 };
+
+#include "scripts\CHVD\dialog.hpp"
+#include "compositions\compositions.cfg"

@@ -9,19 +9,6 @@ groupes = [];
 // Position de la mission
 _position = call MFW_fn_findMissionPosition;
 
-// Objectif à détruire
-objectif_class = "O_T_APC_Tracked_02_AA_ghex_F";
-
-// Type Véhicule
-objectif = [_position, 0, objectif_class, east] call BIS_fnc_spawnVehicle select 0;
-objectif engineOn true;
-
-// Type Batiment
-// TODO
-
-// Template base
-// TODO
-
 // Briefing / Marqueurs
 [
 	"Mission exemple", // Titre
@@ -31,6 +18,21 @@ objectif engineOn true;
 	_position,
 	"ColorRed"
 ] call MFW_fn_createMissionMarker;
+
+// ----- Composition
+_composition = [
+	"mission_destruction_spetsnaz_artillerie", // Nom composition (composition.cfg)
+	_position
+] call LARs_fnc_spawnComp;
+
+// Objectif à détruire
+// Bien noter le nom de variable des objectifs !
+// (Ca veut dire que 2 mêmes mission ne peuvent pas être activées en même temps... pas grave)
+// IMPORTANT : Il faut gérer les objectifs après la composition. Sinon ils ne sont pas encore chargés
+objectifs = [
+	missionNamespace getVariable "objectif_destruction_spetsnaz_artillerie_1",
+	missionNamespace getVariable "objectif_destruction_spetsnaz_artillerie_2"
+];
 
 // ----- Unités de défense
 nombre_groupes = 6 + round(random(3));
@@ -73,7 +75,7 @@ groupes append ([liste_vehicules, nombre_vehicules, _position] call MFW_fn_spawn
 groupes append ([liste_unites, _position, east] call MFW_fn_spawnUnitsInBuildings);
 
 // Attente fin d'objectif
-while {alive objectif} do { sleep 10; };
+while { alive (objectifs select 0) || alive (objectifs select 1) } do {sleep 10; };
 
 // Succès
 ["mission_exemple", "SUCCEEDED"] spawn BIS_fnc_taskSetState;
@@ -88,6 +90,8 @@ sleep 10;
 	} forEach units _y;
 } forEach groupes;
 
+// Suppression de la composition est des unités
+[ _composition ] call LARs_fnc_deleteComp;
 ["mission_exemple"] call BIS_fnc_deleteTask;
 deleteMarker "mission_exemple";
 diag_log "Mission terminée";

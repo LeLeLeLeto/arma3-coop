@@ -1,7 +1,7 @@
 class LARs_spawnComp {
 	tag = "LARs";
 	class Compositions {
-		file = "LARs\spawnComp\functions";
+		file = "scripts\LARs\spawnComp\functions";
 		class createComp{};
 		class createLinks{};
 		class customAttributes{};
@@ -22,7 +22,7 @@ class LARs_spawnComp {
 	};
 
 	class Utilitys {
-		file = "LARs\spawnComp\functions\utility";
+		file = "scripts\LARs\spawnComp\functions\utility";
 		//Utility funcs
 		class deleteComp{};
 		class getCompObjects{};
@@ -31,7 +31,7 @@ class LARs_spawnComp {
 	};
 
 	class Debug {
-		file = "LARs\spawnComp\functions\debug";
+		file = "scripts\LARs\spawnComp\functions\debug";
 		//Debug funcs
 		class drawBounds{};
 	};
