@@ -8,30 +8,35 @@ params ["_unites", "_position"];
 _resultat = [];
 
 private _garrisongroupamount = 0;
-	_batiments = nearestObjects [_position, ["house","building"], 500];
+	_batiments = nearestObjects [_position, ["house","building"], 400];
 
 	if (count _batiments > 0) then {
-		{
-			_groupe = createGroup east;
-			
-			// TODO : chance d'apparition f(x) = 100 - 100/500 . x
-			// (100% à 0m > 0% à 500m)
-			_distance_batiment = _x distance _position;
-			_chance_apparition = 100 - 100 / 500 * _distance_batiment;
+		_groupe = createGroup east;
 
-			if (_chance_apparition > random(100)) then {
-				_positions = _x buildingPos -1;
-				for "_i" from 1 to count _positions do {
-					_position_unite = selectRandom _positions;
-					_positions = _positions - [_position_unite];
+		_nombre_batiments = 10;
+		if ( count _batiments > 100 ) then {
+			_nombre_batiments = 30;
+		} else {
+			// f(x) = -l(x+h)²+v
+			// l = v / h²
+			// 50% des batiments jusqu'à 20 max à 70
+			_nombre_batiments = floor(0 - (0.004) * (count _batiments - 70) ^ 2 + 20);
+		};
 
-					_unite = _groupe createUnit [selectRandom _unites, _position_unite, [], 0, "CAN_COLLIDE"];
-					_unite disableAI "PATH";
-				};
+		// En sélectionnant depuis 0 on priorise les batiments plus proches
+		for "_i" from 0 to _nombre_batiments do {
+			_positions = (_batiments select _i) buildingPos -1;
+
+			for "_n" from 0 to random ((count _positions / 2) - 1) do {
+				_position_unite = selectRandom _positions;
+				_positions = _positions - [_position_unite];
+
+				_unite = _groupe createUnit [selectRandom _unites, _position_unite, [], 0, "CAN_COLLIDE"];
+				_unite disableAI "PATH";
 			};
+		};
 
-			_resultat pushBack _groupe;
-		} forEach _batiments;
+		_resultat pushBack _groupe;
 	};
 
 _resultat
