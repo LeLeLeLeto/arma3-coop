@@ -89,10 +89,7 @@ player_markers_main_loop_handle = _this spawn {
 		
 		_markerNumber = 0; 
 
-		_player = player;		
-		if(!isNil{ACE_player}) then {
-			_player = ACE_player;
-		};
+		_player = player;
 		
 		// show players or players's vehicles
 		{
@@ -111,7 +108,7 @@ player_markers_main_loop_handle = _this spawn {
 				if((crew vehicle _unit) select 0 == _unit) then {
 					_show = true;
 				};		
-				if(!alive _unit || damage _unit > 0.9) then {
+				if(!alive _unit) then {
 					_injured = true;
 				};	  
 				if(!isNil {_unit getVariable "hide"}) then {
