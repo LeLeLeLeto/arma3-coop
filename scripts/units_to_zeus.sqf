@@ -1,5 +1,5 @@
 /**
-	Ajoute les unités sur la carte à l'interface Zeus toutes les 60 secondes (1 minute)
+	Ajoute les unités sur la carte à l'interface Zeus
  */
 
 while {true} do {
@@ -10,5 +10,5 @@ while {true} do {
         _x addCuratorEditableObjects [allMissionObjects "All",true];
       } forEach allCurators;            
     };
-	sleep 60;
+	sleep 20;
 };
