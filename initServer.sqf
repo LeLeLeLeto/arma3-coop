@@ -7,7 +7,7 @@
     // Missions d'attaque et destruction
     _null = [] execVM "scripts\missions\destruction_controle.sqf";
     // Missions d'attaque
-    _null = [] execVM "scripts\missions\attaque_controle.sqf";
+    // _null = [] execVM "scripts\missions\attaque_controle.sqf";
 
 // Script de nettoyage
 execVM "scripts\auto_clean.sqf";
