@@ -116,7 +116,7 @@ player_markers_main_loop_handle = _this spawn {
 				};  
 				if(_unit getVariable ["BTC_need_revive",-1] == 1) then {
 					_injured = true;
-					_show = false;
+					_show = true;
 				};		  
 				if(_unit getVariable ["NORRN_unconscious",false]) then {
 					_injured = true;
