@@ -1,9 +1,9 @@
 /** 
-	Nettoie la carte automatiquement toutes les 10 minutes
+	Nettoie la carte automatiquement toutes les 20 minutes
  */
 
 while {true} do {
-	sleep 600;
+	sleep 1200;
 
 	execVM "scripts\clean_map.sqf";
 };

@@ -1,5 +1,6 @@
 /**
-    Fait réapparaitre le joueur avec le même inventaire
+    Fait réapparaitre le joueur avec le même inventaire.
+	Si l'inventaire du cadavre ne peut pas être récupérée, le joueur réapparait avec son équipement de base.
 */
 
 addMissionEventHandler ["EntityKilled", {

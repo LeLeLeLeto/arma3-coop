@@ -1,41 +1,6 @@
 /*
-	
 	AUTHOR: aeroson
-	NAME: player_markers.sqf
 	VERSION: 2.7.1
-	
-	DOWNLOAD & PARTICIPATE:
-		https://github.com/aeroson/a3-misc
-		http://forums.bistudio.com/showthread.php?156103-Dynamic-Player-Markers
-	
-	DESCRIPTION:
-		A script to mark players on map
-		All markers are created locally
-		Designed to be dynamic, small and fast
-		Shows driver/pilot, vehicle name and number of passengers
-		Click vehicle marker to unfold its passengers list
-		Lets BTC mark unconscious players
-		Shows Norrin's revive unconscious units
-		Shows who is in control of UAV unit
-	
-	USAGE:
-		in (client's) init do:		
-		0 = [] execVM 'player_markers.sqf';
-		this will show players for your side in multiplayer
-		or you and all ais on your side in singleplayer
-		
-		to change this you can add any of the following options
-			"players" will show players
-			"ais" will show ais
-			"allsides" will show all sides not only the units on player's side
-		["player","ai"] execVM 'player_markers.sqf';
-		this will show all player and all ais, you can add allside if you want to show all sides 
-		once you add any of these default behaviour is not used
-
-		calling this script again will stop any previous scripts,
-		you can stop this script by ["stop"] execVM 'player_markers.sqf';
-		you can enable everything this script can show you with ["all"] execVM 'player_markers.sqf';
-
 */
 				   
 if (!hasInterface) exitWith {}; // no map to show markers on
@@ -124,10 +89,7 @@ player_markers_main_loop_handle = _this spawn {
 		
 		_markerNumber = 0; 
 
-		_player = player;		
-		if(!isNil{ACE_player}) then {
-			_player = ACE_player;
-		};
+		_player = player;
 		
 		// show players or players's vehicles
 		{
@@ -146,7 +108,7 @@ player_markers_main_loop_handle = _this spawn {
 				if((crew vehicle _unit) select 0 == _unit) then {
 					_show = true;
 				};		
-				if(!alive _unit || damage _unit > 0.9) then {
+				if(!alive _unit) then {
 					_injured = true;
 				};	  
 				if(!isNil {_unit getVariable "hide"}) then {
@@ -154,7 +116,7 @@ player_markers_main_loop_handle = _this spawn {
 				};  
 				if(_unit getVariable ["BTC_need_revive",-1] == 1) then {
 					_injured = true;
-					_show = false;
+					_show = true;
 				};		  
 				if(_unit getVariable ["NORRN_unconscious",false]) then {
 					_injured = true;

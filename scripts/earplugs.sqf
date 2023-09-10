@@ -1,4 +1,10 @@
-// Attente obligatoire (Chargement ?)
+/**
+	Applique ou enlève des bouchons d'oreilles.
+	Le son du jeu descend à 0.2 (20%) en fondu pendant 2 secondes.
+	Touche PAUSE (Code 197).
+ */
+
+// Attente obligatoire
 sleep 1;
 
 is_on = true;
@@ -14,5 +20,4 @@ earplugAction = {
 	is_on = !is_on;
 };
 
-// Touche earplugs : PAUSE
 event_earplugs = (findDisplay 46) displayAddEventHandler ["KeyDown", "if (_this select 1 == 197) then {_this call earplugAction;};"];
