@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=33;
+		nextID=41;
 	};
 	class Camera
 	{
-		pos[]={14754.109,39.235214,16714.582};
-		dir[]={-0.53727949,-0.59101921,0.60168684};
-		up[]={-0.3936522,0.80665743,0.44084197};
-		aside[]={0.74590123,0,0.66605651};
+		pos[]={9432.7803,343.41571,19610.799};
+		dir[]={0.22878008,-0.36524794,0.90238285};
+		up[]={0.089764684,0.93090051,0.35405982};
+		aside[]={0.96935308,2.3003668e-007,-0.24576053};
 	};
 };
 binarizationWanted=0;
@@ -2953,7 +2953,7 @@ class Mission
 						class data
 						{
 							singleType="STRING";
-							value="newVehicle setVehicleLock ""UNLOCKED""";
+							value="";
 						};
 					};
 				};
@@ -7224,7 +7224,7 @@ class Mission
 						class data
 						{
 							singleType="STRING";
-							value="newVehicle setVehicleLock ""UNLOCKED""";
+							value="";
 						};
 					};
 				};
@@ -7626,7 +7626,7 @@ class Mission
 						class data
 						{
 							singleType="STRING";
-							value="newVehicle setVehicleLock ""UNLOCKED""";
+							value="";
 						};
 					};
 				};
@@ -20312,7 +20312,7 @@ class Mission
 						class data
 						{
 							singleType="STRING";
-							value="newVehicle setVehicleLock ""UNLOCKED""";
+							value="";
 						};
 					};
 				};
@@ -21123,19 +21123,21 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={14150.961,20.558578,16186.248};
-				angles[]={0.0093286335,0.11437465,0.0026520467};
+				position[]={14150.961,20.558393,16186.248};
+				angles[]={0.0093200579,0.11437143,0.0026529003};
 			};
 			side="Empty";
 			flags=4;
 			class Attributes
 			{
 				lock="LOCKED";
+				fuel=0;
 				textures="CE";
+				createAsSimpleObject=1;
 			};
 			id=1041;
 			type="AMF_GBC180_AmmoTruck";
-			atlOffset=0.0031852722;
+			atlOffset=0.0030002594;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -21294,7 +21296,7 @@ class Mission
 						class data
 						{
 							singleType="STRING";
-							value="[[[[""FirstAidKit""],[10]],[[],[]],[[],[]],[[],[]]],false]";
+							value="[[[[],[]],[[],[]],[[""FirstAidKit""],[10]],[[],[]]],false]";
 						};
 					};
 				};
@@ -21350,6 +21352,8 @@ class Mission
 			class Attributes
 			{
 				lock="LOCKED";
+				fuel=0;
+				createAsSimpleObject=1;
 			};
 			id=1047;
 			type="B_Truck_01_fuel_F";
@@ -21364,7 +21368,7 @@ class Mission
 						class data
 						{
 							singleType="STRING";
-							value="[[[[""FirstAidKit""],[10]],[[],[]],[[],[]],[[],[]]],false]";
+							value="[[[[],[]],[[],[]],[[""FirstAidKit""],[10]],[[],[]]],false]";
 						};
 					};
 				};

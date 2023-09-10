@@ -954,6 +954,7 @@ class items
 				{
 					skill=0.44999999;
 					rank="CORPORAL";
+					name="objectif_destruction_spetsnaz_aa_1D";
 				};
 				id=500;
 				type="O_Soldier_GL_F";
@@ -971,6 +972,7 @@ class items
 				class Attributes
 				{
 					skill=0.40000001;
+					name="objectif_destruction_spetsnaz_aa_1C";
 				};
 				id=501;
 				type="O_Soldier_F";
@@ -1026,6 +1028,7 @@ class items
 		class Attributes
 		{
 			fuel=0;
+			name="objectif_destruction_spetsnaz_aa_1";
 			reportRemoteTargets=1;
 			receiveRemoteTargets=1;
 		};
@@ -1053,6 +1056,7 @@ class items
 				{
 					skill=0.44999999;
 					rank="CORPORAL";
+					name="objectif_destruction_spetsnaz_aa_2D";
 				};
 				id=503;
 				type="O_Soldier_GL_F";
@@ -1070,6 +1074,7 @@ class items
 				class Attributes
 				{
 					skill=0.40000001;
+					name="objectif_destruction_spetsnaz_aa_2C";
 				};
 				id=504;
 				type="O_Soldier_F";
@@ -1125,6 +1130,7 @@ class items
 		class Attributes
 		{
 			fuel=0;
+			name="objectif_destruction_spetsnaz_aa_2";
 			reportRemoteTargets=1;
 			receiveRemoteTargets=1;
 		};
