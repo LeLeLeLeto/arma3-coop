@@ -39,5 +39,5 @@ for "_n" from 0 to _simultanees - 1 do {
 			sleep 60;
 		};
 	};
-	sleep 10;
+	sleep 30;
 };

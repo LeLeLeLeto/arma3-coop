@@ -63,9 +63,9 @@ private _liste_unites = [
 	"I_G_officer_F"
 ];
 
-_groupes append ([_liste_groupes, _nombre_groupes, _position] call MFW_fn_spawnGroups);
-_groupes append ([_liste_vehicules, _nombre_vehicules, _position] call MFW_fn_spawnVehicles);
-_groupes append ([_liste_unites, _position, east] call MFW_fn_spawnUnitsInBuildings);
+_groupes append ([_liste_groupes, _nombre_groupes, _position, independent] call MFW_fn_spawnGroups);
+_groupes append ([_liste_vehicules, _nombre_vehicules, _position, independent] call MFW_fn_spawnVehicles);
+_groupes append ([_liste_unites, _position, independent] call MFW_fn_spawnUnitsInBuildings);
 
 // Attente fin d'objectif
 waitUntil {!alive (_objectifs select 0)};

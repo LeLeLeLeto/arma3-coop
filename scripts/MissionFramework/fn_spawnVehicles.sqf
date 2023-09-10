@@ -4,11 +4,11 @@
 	Retourne : liste des véhicules créés
  */
 
- params ["_liste_vehicules", "_nombre", "_position"];
+ params ["_liste_vehicules", "_nombre", "_position", "_faction"];
  resultat = [];
 
  for "i" from 0 to _nombre do {
-	groupe = createGroup east;
+	groupe = createGroup _faction;
 	vehicule = [
 		[_position, 50, 200, -1, 0, 0.2] call BIS_fnc_findSafePos,
 		0,

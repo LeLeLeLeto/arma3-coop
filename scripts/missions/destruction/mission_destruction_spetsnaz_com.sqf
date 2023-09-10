@@ -65,8 +65,8 @@ private _liste_unites = [
 	"O_R_Patrol_Soldier_Medic",
 	"O_R_Patrol_Soldier_Engineer_F"];
 
-_groupes append ([_liste_groupes, _nombre_groupes, _position] call MFW_fn_spawnGroups);
-_groupes append ([_liste_vehicules, _nombre_vehicules, _position] call MFW_fn_spawnVehicles);
+_groupes append ([_liste_groupes, _nombre_groupes, _position, east] call MFW_fn_spawnGroups);
+_groupes append ([_liste_vehicules, _nombre_vehicules, _position, east] call MFW_fn_spawnVehicles);
 _groupes append ([_liste_unites, _position, east] call MFW_fn_spawnUnitsInBuildings);
 
 // Attente fin d'objectif
