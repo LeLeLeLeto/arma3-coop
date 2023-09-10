@@ -32,25 +32,20 @@ private _objectifs = [
 // ----- Unités de défense
 private _nombre_groupes = 6 + round(random(3));
 private _liste_groupes = [
-	(configfile >> "CfgGroups" >> "East" >> "Guerilla" >> "Infantry" >> "IRG_InfSquad"),
-	(configfile >> "CfgGroups" >> "East" >> "Guerilla" >> "Infantry" >> "IRG_InfSquad_Weapons"),
-	(configfile >> "CfgGroups" >> "East" >> "Guerilla" >> "Infantry" >> "IRG_InfTeam"),
-	(configfile >> "CfgGroups" >> "East" >> "Guerilla" >> "Infantry" >> "IRG_InfTeam_AT"),
-	(configfile >> "CfgGroups" >> "East" >> "Guerilla" >> "Infantry" >> "IRG_InfSentry"),
-	(configfile >> "CfgGroups" >> "East" >> "Guerilla" >> "Infantry" >> "IRG_InfAssault"),
-	(configfile >> "CfgGroups" >> "East" >> "Guerilla" >> "Infantry" >> "B_G_InfSquad_Assault"),
-	(configfile >> "CfgGroups" >> "East" >> "Guerilla" >> "Infantry" >> "B_G_InfTeam_Light"),
-	(configfile >> "CfgGroups" >> "East" >> "Guerilla" >> "Infantry" >> "IRG_SniperTeam_M")
+	(configfile >> "CfgGroups" >> "Indep" >> "IND_E_F" >> "Infantry" >> "I_E_InfSquad"),
+	(configfile >> "CfgGroups" >> "Indep" >> "IND_F" >> "Infantry" >> "HAF_InfSquad_Weapons"),
+	(configfile >> "CfgGroups" >> "Indep" >> "IND_E_F" >> "Infantry" >> "I_E_InfTeam"),
+	(configfile >> "CfgGroups" >> "Indep" >> "IND_F" >> "Infantry" >> "HAF_InfTeam_AT"),
+	(configfile >> "CfgGroups" >> "Indep" >> "IND_E_F" >> "Infantry" >> "I_E_InfSentry"),
+	(configfile >> "CfgGroups" >> "Indep" >> "IND_G_F" >> "Infantry" >> "I_G_InfSquad_Assault"),
+	(configfile >> "CfgGroups" >> "Indep" >> "IND_G_F" >> "Infantry" >> "I_G_InfTeam_Light"),
+	(configfile >> "CfgGroups" >> "Indep" >> "IND_F" >> "Infantry" >> "HAF_SniperTeam")
 ];
 
 private _nombre_vehicules = 1 + floor(random(3));
 private _liste_vehicules = [
 	"I_G_Offroad_01_armed_F",
-	"I_G_Offroad_01_AT_F",
-	"I_static_AA_F",
-	"I_static_AT_F",
-	"I_HMG_01_high_F",
-	"I_G_Mortar_01_F"
+	"I_G_Offroad_01_AT_F"
 ];
 
 private _liste_unites = [
