@@ -4,20 +4,20 @@
 	Retourne : liste des véhicules créés
  */
 
- params ["_liste_vehicules", "_nombre", "_position", "_faction"];
- resultat = [];
+params ["_liste_vehicules", "_nombre", "_position", "_faction"];
+private _resultat = [];
 
- for "i" from 0 to _nombre do {
-	groupe = createGroup _faction;
-	vehicule = [
+for "i" from 0 to _nombre do {
+	private _groupe = createGroup _faction;
+	private _vehicule = [
 		[_position, 50, 200, -1, 0, 0.2] call BIS_fnc_findSafePos,
 		0,
 		selectRandom _liste_vehicules,
-		groupe
+		_groupe
 	] call BIS_fnc_spawnVehicle;
-	[groupe, _position, 400 + random(100)] call BIS_fnc_taskPatrol;
+	[_groupe, _position, 400 + random(100)] call BIS_fnc_taskPatrol;
 
-	resultat pushBack groupe;
- };
+	_resultat pushBack _groupe;
+};
 
- resultat
+_resultat
