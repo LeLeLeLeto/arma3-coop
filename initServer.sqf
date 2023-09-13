@@ -8,8 +8,8 @@
 
 // Script de nettoyage
 execVM "scripts\auto_clean.sqf";
-// Script Zeus
-execVM "scripts\units_to_zeus.sqf";
+// Script globaux
+execVM "scripts\global.sqf";
 
 // Initialise le "Dynamic Groups Framework"
 // (Permet la création et la gestion des équipes par les joueurs)
