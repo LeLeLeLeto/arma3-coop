@@ -16,14 +16,14 @@ AIS_MEDEVAC_STATIONS		=	[];				// Add one or more objects and a radius to activa
 //	v v v v v v v v v v v v  --- Optional Settings --- v v v v v v v v v v v v 
 
 AIS_DAMAGE_TOLLERANCE_FACTOR = 	1; 				// A higher value means more damage tolerance. 1 is Vanilla. 0.8 mean all damage will reduce to 80% of Vanilla.
-AIS_BLEEDOUT_TIME 			= 	1200; 			// Basic life time in seconds until the unit bleed out and die.. The real life time depends on the real damage of the unit. (can be less or more time from the basic value)
+AIS_BLEEDOUT_TIME 			= 	300; 			// Basic life time in seconds until the unit bleed out and die.. The real life time depends on the real damage of the unit. (can be less or more time from the basic value)
 AIS_REVIVETIME 				= 	60;				// Basic revive time in seconds. The real revive time depends on the real damage of the unit. (can be less or more time from the basic value)
-AIS_STABILIZETIME 			= 	30;				// Basic stabilize time in seconds to stop the bleeding of a unconscious unit. The real revive time depends on the real damage of the unit. (can be less or more time from the basic value)
-AIS_REVIVE_HEAL 			= 	false;			// If set to true the injured unit get completely healed after the revive. (casual gameplay without a medic)
+AIS_STABILIZETIME 			= 	20;				// Basic stabilize time in seconds to stop the bleeding of a unconscious unit. The real revive time depends on the real damage of the unit. (can be less or more time from the basic value)
+AIS_REVIVE_HEAL 			= 	true;			// If set to true the injured unit get completely healed after the revive. (casual gameplay without a medic)
 AIS_TOGGLE_RADIO 			= 	true; 			// If set to true, unconscious players cannot use his TFAR or ACRE radios.
 AIS_NO_CHAT 				= 	true; 			// If set to true, a injured player cannot use text chat during he is uncoscious.
 AIS_AI_HELP_RADIUS 			= 	100; 			// Number, Radius in metres. Units in this radius will help to revive if no group member is able to revive. Max value is 200 metres.
-AIS_DISABLE_RESPAWN_BUTTON	=	30;				// Time in seconds while the respawn button is disabled (Esc Menu). Set to 0 to enable the respawn button everytime.
+AIS_DISABLE_RESPAWN_BUTTON	=	1;				// Time in seconds while the respawn button is disabled (Esc Menu). Set to 0 to enable the respawn button everytime.
 AIS_DISABLE_FURTHER_DAMAGE	=	true;			// If set to true, an unconcious unit wont become further damage til death. If set to false, an unconcious unit can also die before bleedout timer is over. (f.e. trough near explosions)
 
 
@@ -33,6 +33,6 @@ AIS_DISABLE_FURTHER_DAMAGE	=	true;			// If set to true, an unconcious unit wont 
 AIS_SHOW_UNC_MARKERS	 	=	true; 			// If set to true, a marker will show injured units on the map.
 AIS_SHOW_UNC_MESSAGE_TO 	= 	"side"; 		// "None", "Side", "Group" --> who read the message about wounded units.
 AIS_SHOW_UNC_3D_MARKERS 	=	true; 			// If set to true, an in-game visible 3D-icon shows you the position of injured units (within a range of 20 metres and 35 metres for medics).
-AIS_IMPACT_EFFECTS 			= 	true; 			// Set to true to enable impact effects. (simple simluation of supressing effects)
+AIS_IMPACT_EFFECTS 			= 	false; 			// Set to true to enable impact effects. (simple simluation of supressing effects)
 AIS_SHOW_COUNTDOWN 			= 	true; 			// If set to true, an unconscious unit will be able to see the bleed out timer.
-AIS_SHOW_DIARYINFO 			= 	true; 			// If set to true, a diary entry with some informations about the AIS (Credits, features, How to) is added.
+AIS_SHOW_DIARYINFO 			= 	false; 			// If set to true, a diary entry with some informations about the AIS (Credits, features, How to) is added.
