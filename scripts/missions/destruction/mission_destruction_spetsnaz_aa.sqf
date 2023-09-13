@@ -52,7 +52,9 @@ private _liste_vehicules = [
 	"O_Heli_Light_02_F",
 	"O_Heli_Light_02_v2_F",
 	"O_MBT_04_command_F",
-	"O_MBT_04_cannon_F"
+	"O_MBT_04_cannon_F",
+	"O_Plane_Fighter_02_F",
+	"O_Plane_CAS_02_dynamicLoadout_F"
 ];
 
 private _liste_unites = [
