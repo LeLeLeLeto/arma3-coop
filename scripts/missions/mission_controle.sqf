@@ -17,6 +17,7 @@ missions_en_cours = [];
 publicVariableServer "missions_disponibles";
 publicVariableServer "missions_en_cours";
 
+sleep 120;
 for "_n" from 0 to _simultanees - 1 do {
 	0 spawn {
 		while { true } do {
@@ -39,5 +40,5 @@ for "_n" from 0 to _simultanees - 1 do {
 			sleep 60;
 		};
 	};
-	sleep 30;
+	sleep 20;
 };
