@@ -14,7 +14,7 @@ missions_disponibles = [
 ];
 missions_en_cours = [];
 positions_blacklist = [
-	[[14000, 16000], 5000] // Base principale
+	[[14000, 16000], 2000] // Base principale
 	// TODO autres bases
 ];
 
