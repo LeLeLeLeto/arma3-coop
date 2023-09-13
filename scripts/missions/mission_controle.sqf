@@ -14,15 +14,14 @@ missions_disponibles = [
 ];
 missions_en_cours = [];
 positions_blacklist = [
-	[[14000, 16000], 2000] // Base principale
-	// TODO autres bases
+	// TODO autres bases ??
 ];
 
 publicVariableServer "missions_disponibles";
 publicVariableServer "missions_en_cours";
 publicVariableServer "positions_blacklist";
 
-sleep 120;
+sleep 60;
 for "_n" from 0 to _simultanees - 1 do {
 	0 spawn {
 		while { true } do {
@@ -37,6 +36,8 @@ for "_n" from 0 to _simultanees - 1 do {
 
 			// Exécution de la mission
 			_handle = [_mission_position] execVM _mission;
+
+			hint format ["blacklist : %1", positions_blacklist];
 
 			// On attend qu'elle finisse
 			waitUntil { scriptDone _handle; };
