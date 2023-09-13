@@ -5,12 +5,12 @@ _simultanees = 4;
 _nombre_en_cours = 0;
 
 missions_disponibles = [
-	"scripts\missions\destruction\mission_destruction_spetsnaz_aa.sqf",
-	"scripts\missions\destruction\mission_destruction_spetsnaz_artillerie.sqf",
-	"scripts\missions\destruction\mission_destruction_spetsnaz_com.sqf",
-	"scripts\missions\destruction\mission_destruction_spetsnaz_officier.sqf",
-	"scripts\missions\destruction\mission_destruction_fia_armement.sqf",
-	"scripts\missions\destruction\mission_destruction_fia_com.sqf"
+	"scripts\missions\mission_destruction_spetsnaz_aa.sqf",
+	"scripts\missions\mission_destruction_spetsnaz_artillerie.sqf",
+	"scripts\missions\mission_destruction_spetsnaz_com.sqf",
+	"scripts\missions\mission_destruction_spetsnaz_officier.sqf",
+	"scripts\missions\mission_destruction_fia_armement.sqf",
+	"scripts\missions\mission_destruction_fia_com.sqf"
 ];
 missions_en_cours = [];
 positions_blacklist = [
