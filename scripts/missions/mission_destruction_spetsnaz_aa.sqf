@@ -1,14 +1,15 @@
+params ["_position"];
+
 // Stockage des unités apparues
 private _groupes = [];
 
 // Position de la mission
-private _position = call MFW_fn_findMissionPosition;
-private _id_mission = "mission_destruction_spetsnaz_artillerie";
+private _id_mission = "mission_destruction_spetsnaz_aa";
 
 // Briefing / Marqueurs
 [
-	"Détruire l'artillerie russe", // Titre
-	"Les russes veulent nous avoiner ! Faites-leur goûter la démocratie française !", // Description
+	"Détruire l'anti-aérien russe", // Titre
+	"Nos pilotes peuvent à peine décoller ! Rendez-leur la vie plus facile et détruisez ces défenses !", // Description
 	_id_mission, // Type
 	_id_mission, // ID
 	_position,
@@ -16,7 +17,7 @@ private _id_mission = "mission_destruction_spetsnaz_artillerie";
 ] call MFW_fn_createMissionMarker;
 
 // ----- Composition
-_composition = [
+private _composition = [
 	_id_mission, // Nom composition (composition.cfg)
 	_position
 ] call LARs_fnc_spawnComp;
@@ -26,8 +27,8 @@ _composition = [
 // (Ca veut dire que 2 mêmes mission ne peuvent pas être activées en même temps... pas grave)
 // IMPORTANT : Il faut gérer les objectifs après la composition. Sinon ils ne sont pas encore chargés
 private _objectifs = [
-	missionNamespace getVariable "objectif_destruction_spetsnaz_artillerie_1",
-	missionNamespace getVariable "objectif_destruction_spetsnaz_artillerie_2"
+	missionNamespace getVariable "objectif_destruction_spetsnaz_aa_1",
+	missionNamespace getVariable "objectif_destruction_spetsnaz_aa_2"
 ];
 
 // ----- Unités de défense
@@ -52,7 +53,9 @@ private _liste_vehicules = [
 	"O_Heli_Light_02_F",
 	"O_Heli_Light_02_v2_F",
 	"O_MBT_04_command_F",
-	"O_MBT_04_cannon_F"
+	"O_MBT_04_cannon_F",
+	"O_Plane_Fighter_02_F",
+	"O_Plane_CAS_02_dynamicLoadout_F"
 ];
 
 private _liste_unites = [
@@ -90,3 +93,4 @@ sleep 300;
 [ _composition ] call LARs_fnc_deleteComp;
 [_id_mission] call BIS_fnc_deleteTask;
 deleteMarker _id_mission;
+diag_log "Mission terminée";

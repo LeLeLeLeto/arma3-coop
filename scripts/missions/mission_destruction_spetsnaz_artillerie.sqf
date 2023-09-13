@@ -1,14 +1,15 @@
+params ["_position"];
+
 // Stockage des unités apparues
 private _groupes = [];
 
 // Position de la mission
-private _position = call MFW_fn_findMissionPosition;
-private _id_mission = "mission_destruction_spetsnaz_com";
+private _id_mission = "mission_destruction_spetsnaz_artillerie";
 
 // Briefing / Marqueurs
 [
-	"Perturber les communications russes", // Titre
-	"Des brouilleurs russes ont été installés ici. Faites-les sauter !", // Description
+	"Détruire l'artillerie russe", // Titre
+	"Les russes veulent nous avoiner ! Faites-leur goûter la démocratie française !", // Description
 	_id_mission, // Type
 	_id_mission, // ID
 	_position,
@@ -16,7 +17,7 @@ private _id_mission = "mission_destruction_spetsnaz_com";
 ] call MFW_fn_createMissionMarker;
 
 // ----- Composition
-private _composition = [
+_composition = [
 	_id_mission, // Nom composition (composition.cfg)
 	_position
 ] call LARs_fnc_spawnComp;
@@ -26,7 +27,8 @@ private _composition = [
 // (Ca veut dire que 2 mêmes mission ne peuvent pas être activées en même temps... pas grave)
 // IMPORTANT : Il faut gérer les objectifs après la composition. Sinon ils ne sont pas encore chargés
 private _objectifs = [
-	missionNamespace getVariable "objectif_destruction_com_1"
+	missionNamespace getVariable "objectif_destruction_spetsnaz_artillerie_1",
+	missionNamespace getVariable "objectif_destruction_spetsnaz_artillerie_2"
 ];
 
 // ----- Unités de défense
@@ -70,7 +72,7 @@ _groupes append ([_liste_vehicules, _nombre_vehicules, _position, east] call MFW
 _groupes append ([_liste_unites, _position, east] call MFW_fn_spawnUnitsInBuildings);
 
 // Attente fin d'objectif
-waitUntil {!alive (_objectifs select 0)};
+waitUntil {!alive (_objectifs select 0) && !alive (_objectifs select 1)};
 
 // Succès
 [_id_mission, "SUCCEEDED"] spawn BIS_fnc_taskSetState;

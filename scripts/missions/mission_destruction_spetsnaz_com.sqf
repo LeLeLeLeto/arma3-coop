@@ -1,14 +1,15 @@
+params ["_position"];
+
 // Stockage des unités apparues
 private _groupes = [];
 
 // Position de la mission
-private _position = call MFW_fn_findMissionPosition;
-private _id_mission = "mission_destruction_spetsnaz_officier";
+private _id_mission = "mission_destruction_spetsnaz_com";
 
 // Briefing / Marqueurs
 [
-	"Assassiner l'officer russe", // Titre
-	"Il l'aura bien cherché celui-là ! Tuez l'officier russe et rentrez à la maison.", // Description
+	"Perturber les communications russes", // Titre
+	"Des brouilleurs russes ont été installés ici. Faites-les sauter !", // Description
 	_id_mission, // Type
 	_id_mission, // ID
 	_position,
@@ -26,7 +27,7 @@ private _composition = [
 // (Ca veut dire que 2 mêmes mission ne peuvent pas être activées en même temps... pas grave)
 // IMPORTANT : Il faut gérer les objectifs après la composition. Sinon ils ne sont pas encore chargés
 private _objectifs = [
-	missionNamespace getVariable "objectif_destruction_spetsnaz_officier_1"
+	missionNamespace getVariable "objectif_destruction_com_1"
 ];
 
 // ----- Unités de défense

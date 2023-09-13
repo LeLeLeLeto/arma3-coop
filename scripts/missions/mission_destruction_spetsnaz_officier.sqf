@@ -1,14 +1,15 @@
+params ["_position"];
+
 // Stockage des unités apparues
 private _groupes = [];
 
 // Position de la mission
-private _position = call MFW_fn_findMissionPosition;
-private _id_mission = "mission_destruction_spetsnaz_aa";
+private _id_mission = "mission_destruction_spetsnaz_officier";
 
 // Briefing / Marqueurs
 [
-	"Détruire l'anti-aérien russe", // Titre
-	"Nos pilotes peuvent à peine décoller ! Rendez-leur la vie plus facile et détruisez ces défenses !", // Description
+	"Assassiner l'officer russe", // Titre
+	"Il l'aura bien cherché celui-là ! Tuez l'officier russe et rentrez à la maison.", // Description
 	_id_mission, // Type
 	_id_mission, // ID
 	_position,
@@ -26,8 +27,7 @@ private _composition = [
 // (Ca veut dire que 2 mêmes mission ne peuvent pas être activées en même temps... pas grave)
 // IMPORTANT : Il faut gérer les objectifs après la composition. Sinon ils ne sont pas encore chargés
 private _objectifs = [
-	missionNamespace getVariable "objectif_destruction_spetsnaz_aa_1",
-	missionNamespace getVariable "objectif_destruction_spetsnaz_aa_2"
+	missionNamespace getVariable "objectif_destruction_spetsnaz_officier_1"
 ];
 
 // ----- Unités de défense
@@ -52,9 +52,7 @@ private _liste_vehicules = [
 	"O_Heli_Light_02_F",
 	"O_Heli_Light_02_v2_F",
 	"O_MBT_04_command_F",
-	"O_MBT_04_cannon_F",
-	"O_Plane_Fighter_02_F",
-	"O_Plane_CAS_02_dynamicLoadout_F"
+	"O_MBT_04_cannon_F"
 ];
 
 private _liste_unites = [
@@ -73,7 +71,7 @@ _groupes append ([_liste_vehicules, _nombre_vehicules, _position, east] call MFW
 _groupes append ([_liste_unites, _position, east] call MFW_fn_spawnUnitsInBuildings);
 
 // Attente fin d'objectif
-waitUntil {!alive (_objectifs select 0) && !alive (_objectifs select 1)};
+waitUntil {!alive (_objectifs select 0)};
 
 // Succès
 [_id_mission, "SUCCEEDED"] spawn BIS_fnc_taskSetState;
@@ -92,4 +90,3 @@ sleep 300;
 [ _composition ] call LARs_fnc_deleteComp;
 [_id_mission] call BIS_fnc_deleteTask;
 deleteMarker _id_mission;
-diag_log "Mission terminée";
