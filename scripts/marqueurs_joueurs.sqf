@@ -97,85 +97,57 @@ player_markers_main_loop_handle = _this spawn {
 			_injured = false;
 			_unit = _x;
 			
-			if(
-				(
-					(_showAIs && {!(_unit call _isPlayer)} && {0=={ {_x==_unit} count crew _x>0} count allUnitsUav}) ||
-					(_showPlayers && {_unit call _isPlayer})
-				) && {
-					_showAllSides || side _unit == side _player
-				}
-			) then {	
-				if((crew vehicle _unit) select 0 == _unit) then {
-					_show = true;
-				};		
-				if(!alive _unit) then {
-					_injured = true;
-				};	  
-				if(!isNil {_unit getVariable "hide"}) then {
-					_show = false;
-				};  
-				if(_unit getVariable ["BTC_need_revive",-1] == 1) then {
-					_injured = true;
-					_show = true;
-				};		  
-				if(_unit getVariable ["NORRN_unconscious",false]) then {
-					_injured = true;
-				};	  			
+			_vehicle = vehicle _unit;  				  	
+			_pos = getPosATL _vehicle;		  					
+			_color = _unit call _getMarkerColor;  
+
+			_markerText = _pos call _getNextMarker;						
+			_markerText setMarkerColorLocal _color;	 						 				
+	 		_markerText setMarkerTypeLocal "c_unknown";		  			   
+			_markerText setMarkerSizeLocal [0.8,0];
+
+			_marker = _pos call _getNextMarker;			
+			_marker setMarkerColorLocal _color;
+			_marker setMarkerDirLocal getDir _vehicle;
+			_marker setMarkerTypeLocal "mil_triangle";
+			_marker setMarkerTextLocal "";			
+			if(_vehicle == vehicle _player) then {
+				_marker setMarkerSizeLocal [0.8,1];
+			} else {
+				_marker setMarkerSizeLocal [0.5,0.7];
 			};
-				  	 
-			if(_show) then {
-				_vehicle = vehicle _unit;  				  	
-				_pos = getPosATL _vehicle;		  					
-				_color = _unit call _getMarkerColor;  
-
-				_markerText = _pos call _getNextMarker;						
-				_markerText setMarkerColorLocal _color;	 						 				
-	 			_markerText setMarkerTypeLocal "c_unknown";		  			   
-				_markerText setMarkerSizeLocal [0.8,0];
-
-				_marker = _pos call _getNextMarker;			
-				_marker setMarkerColorLocal _color;
-				_marker setMarkerDirLocal getDir _vehicle;
-				_marker setMarkerTypeLocal "mil_triangle";
-				_marker setMarkerTextLocal "";			
-				if(_vehicle == vehicle _player) then {
-					_marker setMarkerSizeLocal [0.8,1];
-				} else {
-					_marker setMarkerSizeLocal [0.5,0.7];
-				};
+			
+	 		if(_vehicle != _unit && !(_vehicle isKindOf "ParachuteBase")) then {			 						
+				_text = format["[%1]", getText(configFile>>"CfgVehicles">>typeOf _vehicle>>"DisplayName")];
+				if(!isNull driver _vehicle) then {
+					_text = format["%1 %2", name driver _vehicle, _text];	
+				};							 						
 				
-	 			if(_vehicle != _unit && !(_vehicle isKindOf "ParachuteBase")) then {			 						
-					_text = format["[%1]", getText(configFile>>"CfgVehicles">>typeOf _vehicle>>"DisplayName")];
-					if(!isNull driver _vehicle) then {
-						_text = format["%1 %2", name driver _vehicle, _text];	
-					};							 						
-					
-					if((aero_player_markers_pos distance getPosATL _vehicle) < 50) then {
-						aero_player_markers_pos = getPosATL _vehicle;
-						_num = 0;
-						{
-							if(alive _x && _x call _isPlayer && _x != driver _vehicle) then {						
-								_text = format["%1%2 %3", _text, if(_num>0)then{","}else{""}, name _x];
-								_num = _num + 1;
-							};						
-						} forEach crew _vehicle; 
-					} else { 
-						_num = {alive _x && _x call _isPlayer && _x != driver _vehicle} count crew _vehicle;
-						if (_num>0) then {					
-							if (isNull driver _vehicle) then {
-								_text = format["%1 %2", _text, name (crew _vehicle select 0)];
-								_num = _num - 1;
-							};
-							if (_num>0) then {
-								_text = format["%1 +%2", _text, _num];
-							};
+				if((aero_player_markers_pos distance getPosATL _vehicle) < 50) then {
+					aero_player_markers_pos = getPosATL _vehicle;
+					_num = 0;
+					{
+						if(alive _x && _x call _isPlayer && _x != driver _vehicle) then {						
+							_text = format["%1%2 %3", _text, if(_num>0)then{","}else{""}, name _x];
+							_num = _num + 1;
+						};						
+					} forEach crew _vehicle; 
+				} else { 
+					_num = {alive _x && _x call _isPlayer && _x != driver _vehicle} count crew _vehicle;
+					if (_num>0) then {					
+						if (isNull driver _vehicle) then {
+							_text = format["%1 %2", _text, name (crew _vehicle select 0)];
+							_num = _num - 1;
 						};
-					};	 					
-				} else {
-					_text = name _x;			
-				};
-				_markerText setMarkerTextLocal _text;
+						if (_num>0) then {
+							_text = format["%1 +%2", _text, _num];
+						};
+					};
+				};	 					
+			} else {
+				_text = name _x;			
 			};
+			_markerText setMarkerTextLocal _text;
 			
 		} forEach ((allUnits - allPlayers) + allPlayers); // BUG? its possible that allUnits does not contain allPlayers
 
