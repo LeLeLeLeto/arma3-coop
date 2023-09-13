@@ -12,6 +12,6 @@
 	0.25, // Pente maximale
 	0, // Mode côte
 	[ // Blacklist
-		[[14000, 16000], 5000] // Base principale
+		positions_blacklist;
 	]
 ] call BIS_fnc_findSafePos

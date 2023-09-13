@@ -1,8 +1,9 @@
+params ["_position"];
+
 // Stockage des unités apparues
 private _groupes = [];
 
 // Position de la mission
-private _position = call MFW_fn_findMissionPosition;
 private _id_mission = "mission_destruction_spetsnaz_artillerie";
 
 // Briefing / Marqueurs
