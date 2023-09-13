@@ -4,14 +4,12 @@
  */
 
 [
-	[0, 0], // Centre de la recherche
-	0, // Distance minimale
+	[14174, 16263], // Centre de la recherche
+	2000, // Distance minimale
 	-1, // Distance maximale
-	25, // Distance minimale avec d'autres objets
+	0, // Distance minimale avec d'autres objets
 	0, // 0 : terre uniquement
-	0.25, // Pente maximale
+	0.15, // Pente maximale
 	0, // Mode côte
-	[ // Blacklist
-		positions_blacklist;
-	]
+	positions_blacklist
 ] call BIS_fnc_findSafePos
